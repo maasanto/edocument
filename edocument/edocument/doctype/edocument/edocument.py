@@ -23,6 +23,9 @@ def _detect_profile_from_xml(xml_bytes: bytes) -> str | None:
 
 		root = ET.fromstring(xml_bytes)
 
+		# Get all namespaces declared in the XML document
+		all_xml_namespaces = set(root.nsmap.values()) if root.nsmap else set()
+
 		# Get all profiles
 		profiles = frappe.get_all(
 			"EDocument Profile",
@@ -38,8 +41,11 @@ def _detect_profile_from_xml(xml_bytes: bytes) -> str | None:
 			if not namespace or not element_name or not identifier_value:
 				continue
 
+			# Check if the profile's namespace exists in the XML
+			if namespace not in all_xml_namespaces:
+				continue
+
 			# Find element in the profile's namespace
-			# findall works regardless of where the namespace is declared (root or child elements)
 			elem = root.findall(f".//{{{namespace}}}{element_name}")
 			if elem and elem[0].text:
 				if elem[0].text.strip() == identifier_value:
@@ -197,7 +203,7 @@ class EDocument(Document):
 		# Combine errors and warnings in the error field
 		error_text_parts = []
 		if error_msg:
-			error_text_parts.append(f"Errors:\n{error_msg}")
+			error_text_parts.append(error_msg)
 		if warnings:
 			warnings_text = "\n".join(warnings)
 			error_text_parts.append(f"Warnings:\n{warnings_text}")
