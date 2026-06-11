@@ -862,15 +862,36 @@ class PEPPOLGenerator:
 			charge_total.text = "0.00"
 			charge_total.set("currencyID", self.invoice.currency)
 
-		# Prepaid Amount (BT-113) - Sum of amounts already paid
-		# This is required when PayableAmount != TaxInclusiveAmount to satisfy BR-CO-16:
-		# PayableAmount = TaxInclusiveAmount - PrepaidAmount + RoundingAmount
+		# Prepaid Amount (BT-113) and Payable Rounding Amount (BT-114) must together satisfy BR-CO-16:
+		# PayableAmount = TaxInclusiveAmount - PrepaidAmount + PayableRoundingAmount
+		# The customer owes rounded_total and outstanding_amount is tracked against it, while
+		# TaxInclusiveAmount carries grand_total at 2 decimals. These diverge by a sub-cent when
+		# grand_total's 2-decimal rounding lands on a different cent than rounded_total (e.g. 2047.925
+		# -> 2047.92 vs 2047.93). The rounding term is therefore derived as the residual needed to
+		# balance the equation, not read from rounding_adjustment (which a 2-decimal round would
+		# collapse to zero for exactly those sub-cent cases).
 		if not is_credit:
-			prepaid_value = flt(self.invoice.grand_total, 2) - flt(self.invoice.outstanding_amount, 2)
+			outstanding = flt(self.invoice.outstanding_amount, 2)
+			rounded_total = flt(self.invoice.rounded_total, 2) or inv_grand_total
+
+			# Prepaid Amount (BT-113) - portion already paid, measured against the rounded total due.
+			prepaid_value = flt(rounded_total - outstanding, 2)
+			prepaid_emitted = prepaid_value if prepaid_value > 0 else 0.0
 			if prepaid_value > 0:
 				prepaid_amount = ET.SubElement(legal_total, f"{{{self.namespaces['cbc']}}}PrepaidAmount")
-				prepaid_amount.text = f"{flt(prepaid_value, 2):.2f}"
+				prepaid_amount.text = f"{prepaid_value:.2f}"
 				prepaid_amount.set("currencyID", self.invoice.currency)
+
+			# Payable Rounding Amount (BT-114) - residual that reconciles PayableAmount with
+			# TaxInclusiveAmount - PrepaidAmount. Emitted only when non-zero; must come AFTER
+			# PrepaidAmount and BEFORE PayableAmount per the UBL XSD element order.
+			rounding_value = flt(outstanding - (inv_grand_total - prepaid_emitted), 2)
+			if rounding_value:
+				payable_rounding = ET.SubElement(
+					legal_total, f"{{{self.namespaces['cbc']}}}PayableRoundingAmount"
+				)
+				payable_rounding.text = f"{rounding_value:.2f}"
+				payable_rounding.set("currencyID", self.invoice.currency)
 
 		# Payable Amount (BT-115) - Amount due for payment
 		payable_amount = ET.SubElement(legal_total, f"{{{self.namespaces['cbc']}}}PayableAmount")
