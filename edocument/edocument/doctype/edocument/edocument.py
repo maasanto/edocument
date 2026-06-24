@@ -51,6 +51,15 @@ def _detect_profile_from_xml(xml_bytes: bytes) -> str | None:
 	return None
 
 
+def _single_message_details(message: str, severity: str = "error") -> str:
+	"""
+	Build the JSON payload for the "validation_details" field from a single
+	free-text message (used for setup failures that occur before validation runs,
+	so the report still has something to show).
+	"""
+	return frappe.as_json([{"severity": severity, "code": None, "message": message}])
+
+
 class EDocument(Document):
 	@frappe.whitelist()
 	def _has_xml_file(self) -> bool:
@@ -150,9 +159,10 @@ class EDocument(Document):
 		Internal method to validate XML (used by before_save).
 		Sets fields on self instead of using db_set.
 		"""
-		# Initialize status and error fields
+		# Initialize status, error and structured details fields
 		self.status = None
 		self.error = None
+		self.validation_details = None
 
 		if not self.edocument_profile:
 			return
@@ -165,6 +175,7 @@ class EDocument(Document):
 			error_details = f"{error_msg}\nError: {e!s}"
 			self.status = "Validation Failed"
 			self.error = error_details
+			self.validation_details = _single_message_details(error_details)
 			frappe.log_error(error_details, reference_doctype=self.doctype, reference_name=self.name)
 			return
 
@@ -176,6 +187,7 @@ class EDocument(Document):
 			error_details = f"{error_msg}\nError: {e!s}\nProfile: {self.edocument_profile}"
 			self.status = "Validation Failed"
 			self.error = error_details
+			self.validation_details = _single_message_details(error_details)
 			frappe.log_error(error_details, reference_doctype=self.doctype, reference_name=self.name)
 			return
 
@@ -190,6 +202,7 @@ class EDocument(Document):
 			error_details = f"{error_msg}\nError: {e!s}\nProfile: {self.edocument_profile}"
 			self.status = "Validation Failed"
 			self.error = error_details
+			self.validation_details = _single_message_details(error_details)
 			frappe.log_error(error_details, reference_doctype=self.doctype, reference_name=self.name)
 			return
 
@@ -206,6 +219,9 @@ class EDocument(Document):
 			error_text_parts.append(f"Warnings:\n{warnings_text}")
 
 		error_text = "\n\n".join(error_text_parts) if error_text_parts else None
+
+		# Persist the structured messages that drive the user-friendly report
+		self.validation_details = frappe.as_json(validation_result.get("messages") or [])
 
 		# Update status and error fields on self (will be saved automatically in before_save)
 		if validation_result.get("is_valid"):
@@ -415,6 +431,28 @@ class EDocument(Document):
 		from edocument.preview import get_xml_preview
 
 		return get_xml_preview(xml_bytes, self.edocument_profile)
+
+	@frappe.whitelist()
+	def get_validation_report(self) -> str:
+		"""
+		Render the stored validation messages as a user-friendly HTML report:
+		plain-language explanations up front, with the raw rule codes and technical
+		text in a collapsed section. Returns an empty string when there is nothing
+		to show.
+		"""
+		if not self.validation_details:
+			return ""
+
+		try:
+			messages = frappe.parse_json(self.validation_details)
+		except (ValueError, TypeError):
+			return ""
+
+		# The friendly mapping currently targets the PEPPOL / EN16931 rule set, which
+		# is shared by the UBL-based profiles; unmapped codes fall back to raw text.
+		from edocument.edocument.profiles.peppol.error_messages import build_validation_report
+
+		return build_validation_report(messages)
 
 	@frappe.whitelist()
 	def get_matching_status(self) -> dict:

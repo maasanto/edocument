@@ -25,7 +25,9 @@
   "matching_summary",
   "matching_data",
   "error_section",
+  "validation_report",
   "error",
+  "validation_details",
   "preview_section",
   "edocument_preview"
  ],
@@ -77,9 +79,22 @@
    "options": "Country"
   },
   {
+   "fieldname": "validation_report",
+   "fieldtype": "HTML",
+   "label": "Validation Report"
+  },
+  {
+   "depends_on": "error",
    "fieldname": "error",
    "fieldtype": "Long Text",
-   "label": "Error",
+   "label": "Raw Error Output",
+   "read_only": 1
+  },
+  {
+   "fieldname": "validation_details",
+   "fieldtype": "JSON",
+   "hidden": 1,
+   "label": "Validation Details",
    "read_only": 1
   },
   {
@@ -117,7 +132,7 @@
   {
    "fieldname": "error_section",
    "fieldtype": "Section Break",
-   "label": "Error"
+   "label": "Validation"
   },
   {
    "fieldname": "company",
