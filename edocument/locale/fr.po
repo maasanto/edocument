@@ -1,0 +1,665 @@
+# French translations for edocument.
+# Copyright (C) 2025 Prilk Consulting BV
+# This file is distributed under the same license as the edocument project.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: edocument\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-24 00:00+0000\n"
+"PO-Revision-Date: 2026-06-24 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: edocument/edocument/profiles/peppol/error_messages.py:27
+msgid "The invoice is missing its specification identifier (the PEPPOL/EN16931 profile marker)."
+msgstr "La facture ne comporte pas d'identifiant de spécification (le marqueur de profil PEPPOL/EN16931)."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:28
+msgid "The invoice number is missing."
+msgstr "Le numéro de facture est manquant."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:29
+msgid "The invoice issue date is missing."
+msgstr "La date d'émission de la facture est manquante."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:30
+msgid "The invoice type code is missing."
+msgstr "Le code de type de facture est manquant."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:31
+msgid "The invoice currency is missing."
+msgstr "La devise de la facture est manquante."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:32
+msgid "The seller (your company) name is missing."
+msgstr "Le nom du vendeur (votre société) est manquant."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:33
+msgid "The buyer (customer) name is missing."
+msgstr "Le nom de l'acheteur (client) est manquant."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:34
+msgid "The seller postal address is missing."
+msgstr "L'adresse postale du vendeur est manquante."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:35
+msgid "The seller address is missing a country."
+msgstr "L'adresse du vendeur ne comporte pas de pays."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:36
+msgid "The buyer postal address is missing."
+msgstr "L'adresse postale de l'acheteur est manquante."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:37
+msgid "The buyer address is missing a country."
+msgstr "L'adresse de l'acheteur ne comporte pas de pays."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:38
+msgid "The sum of line net amounts is missing from the invoice totals."
+msgstr "La somme des montants nets des lignes est absente des totaux de la facture."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:39
+msgid "The invoice total without VAT is missing."
+msgstr "Le total de la facture hors TVA est manquant."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:40
+msgid "The invoice total with VAT is missing."
+msgstr "Le total de la facture TTC est manquant."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:41
+msgid "The amount due for payment is missing."
+msgstr "Le montant dû est manquant."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:42
+msgid "The invoice has no lines. Add at least one item."
+msgstr "La facture ne comporte aucune ligne. Ajoutez au moins un article."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:43
+msgid "A payee name is required when the payee differs from the seller."
+msgstr "Un nom de bénéficiaire est requis lorsque le bénéficiaire diffère du vendeur."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:44
+msgid "A seller tax representative name is required when a tax representative is declared."
+msgstr "Le nom du représentant fiscal du vendeur est requis lorsqu'un représentant fiscal est déclaré."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:45
+msgid "A seller tax representative address is required when a tax representative is declared."
+msgstr "L'adresse du représentant fiscal du vendeur est requise lorsqu'un représentant fiscal est déclaré."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:46
+msgid "A seller tax representative country is required when a tax representative is declared."
+msgstr "Le pays du représentant fiscal du vendeur est requis lorsqu'un représentant fiscal est déclaré."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:47
+msgid "An invoice line is missing its line number."
+msgstr "Une ligne de facture ne comporte pas de numéro de ligne."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:48
+msgid "An invoice line is missing its quantity."
+msgstr "Une ligne de facture ne comporte pas de quantité."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:49
+msgid "An invoice line is missing its unit of measure."
+msgstr "Une ligne de facture ne comporte pas d'unité de mesure."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:50
+msgid "An invoice line is missing its net amount."
+msgstr "Une ligne de facture ne comporte pas de montant net."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:51
+msgid "An invoice line is missing the item name."
+msgstr "Une ligne de facture ne comporte pas le nom de l'article."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:52
+msgid "An invoice line is missing the item unit price."
+msgstr "Une ligne de facture ne comporte pas le prix unitaire de l'article."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:53
+msgid "An item net price cannot be negative."
+msgstr "Le prix net d'un article ne peut pas être négatif."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:54
+msgid "An item gross price cannot be negative."
+msgstr "Le prix brut d'un article ne peut pas être négatif."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:55
+msgid "The invoicing period end date must be on or after its start date."
+msgstr "La date de fin de la période de facturation doit être postérieure ou égale à sa date de début."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:56
+msgid "An invoice line period end date must be on or after its start date."
+msgstr "La date de fin de la période d'une ligne de facture doit être postérieure ou égale à sa date de début."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:57
+msgid "A document-level discount is missing its amount."
+msgstr "Une remise au niveau du document ne comporte pas de montant."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:58
+msgid "A document-level discount is missing its VAT category."
+msgstr "Une remise au niveau du document ne comporte pas de catégorie de TVA."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:59
+msgid "A document-level discount needs a reason or a reason code."
+msgstr "Une remise au niveau du document doit comporter un motif ou un code de motif."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:60
+msgid "A document-level charge is missing its amount."
+msgstr "Un frais au niveau du document ne comporte pas de montant."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:61
+msgid "A document-level charge is missing its VAT category."
+msgstr "Un frais au niveau du document ne comporte pas de catégorie de TVA."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:62
+msgid "A document-level charge needs a reason or a reason code."
+msgstr "Un frais au niveau du document doit comporter un motif ou un code de motif."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:63
+msgid "An invoice line discount is missing its amount."
+msgstr "Une remise de ligne de facture ne comporte pas de montant."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:64
+msgid "An invoice line discount needs a reason or a reason code."
+msgstr "Une remise de ligne de facture doit comporter un motif ou un code de motif."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:65
+msgid "An invoice line charge is missing its amount."
+msgstr "Un frais de ligne de facture ne comporte pas de montant."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:66
+msgid "An invoice line charge needs a reason or a reason code."
+msgstr "Un frais de ligne de facture doit comporter un motif ou un code de motif."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:67
+msgid "An attached supporting document is missing its reference."
+msgstr "Un document justificatif joint ne comporte pas de référence."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:68
+msgid "When an accounting currency is set, the VAT total in that currency is required."
+msgstr "Lorsqu'une devise comptable est définie, le total de TVA dans cette devise est requis."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:69
+msgid "Each item attribute needs both a name and a value."
+msgstr "Chaque attribut d'article doit comporter un nom et une valeur."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:70
+msgid "A reference to a preceding invoice is missing its number."
+msgstr "Une référence à une facture précédente ne comporte pas de numéro."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:71
+msgid "A 'deliver to' address is missing its country."
+msgstr "Une adresse de livraison ne comporte pas de pays."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:72
+msgid "For a credit transfer payment, the payment account (IBAN) is required."
+msgstr "Pour un paiement par virement, le compte de paiement (IBAN) est requis."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:73
+msgid "The seller electronic address needs a scheme identifier (e.g. its EAS code)."
+msgstr "L'adresse électronique du vendeur doit comporter un identifiant de schéma (par ex. son code EAS)."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:74
+msgid "The buyer electronic address needs a scheme identifier (e.g. its EAS code)."
+msgstr "L'adresse électronique de l'acheteur doit comporter un identifiant de schéma (par ex. son code EAS)."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:75
+msgid "The item standard identifier needs a scheme identifier."
+msgstr "L'identifiant standard de l'article doit comporter un identifiant de schéma."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:76
+msgid "The item classification identifier needs a scheme identifier."
+msgstr "L'identifiant de classification de l'article doit comporter un identifiant de schéma."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:78
+msgid "Provide either the VAT point date or the VAT point date code, not both."
+msgstr "Indiquez soit la date d'exigibilité de la TVA, soit le code de date d'exigibilité, mais pas les deux."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:79
+msgid "Every invoice line must have a VAT category."
+msgstr "Chaque ligne de facture doit comporter une catégorie de TVA."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:80
+msgid "A document-level discount reason and reason code must describe the same discount."
+msgstr "Le motif et le code de motif d'une remise au niveau du document doivent décrire la même remise."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:81
+msgid "A document-level charge reason and reason code must describe the same charge."
+msgstr "Le motif et le code de motif d'un frais au niveau du document doivent décrire le même frais."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:82
+msgid "VAT identifiers must start with a 2-letter country code (e.g. FR, BE)."
+msgstr "Les identifiants de TVA doivent commencer par un code pays à 2 lettres (par ex. FR, BE)."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:83
+msgid "The sum of line net amounts does not match the individual line amounts."
+msgstr "La somme des montants nets des lignes ne correspond pas aux montants des lignes individuelles."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:84
+msgid "The total of document-level discounts does not match the individual discounts."
+msgstr "Le total des remises au niveau du document ne correspond pas aux remises individuelles."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:85
+msgid "The total of document-level charges does not match the individual charges."
+msgstr "Le total des frais au niveau du document ne correspond pas aux frais individuels."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:86
+msgid "The total without VAT does not equal lines minus discounts plus charges."
+msgstr "Le total hors TVA n'est pas égal aux lignes moins les remises plus les frais."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:87
+msgid "The total VAT amount does not equal the sum of the VAT breakdown amounts."
+msgstr "Le montant total de TVA n'est pas égal à la somme des montants de la ventilation de TVA."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:88
+msgid "The total with VAT must equal the total without VAT plus the total VAT amount. Check the line amounts, taxes and rounding."
+msgstr "Le total TTC doit être égal au total hors TVA plus le montant total de TVA. Vérifiez les montants des lignes, les taxes et les arrondis."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:89
+msgid "The amount due does not equal the total with VAT minus the amount paid plus rounding."
+msgstr "Le montant dû n'est pas égal au total TTC moins le montant payé plus l'arrondi."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:90
+msgid "A VAT breakdown amount does not equal its taxable amount times the VAT rate (rounded to 2 decimals)."
+msgstr "Un montant de ventilation de TVA n'est pas égal à son montant imposable multiplié par le taux de TVA (arrondi à 2 décimales)."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:91
+msgid "The invoice needs at least one VAT breakdown."
+msgstr "La facture doit comporter au moins une ventilation de TVA."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:92
+msgid "When an invoicing period is used, fill in its start and/or end date."
+msgstr "Lorsqu'une période de facturation est utilisée, renseignez sa date de début et/ou de fin."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:93
+msgid "When an invoice line period is used, fill in its start and/or end date."
+msgstr "Lorsqu'une période de ligne de facture est utilisée, renseignez sa date de début et/ou de fin."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:95
+msgid "When an amount is due, provide a payment due date or payment terms."
+msgstr "Lorsqu'un montant est dû, indiquez une date d'échéance ou des conditions de paiement."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:96
+msgid "Provide a seller identifier, legal registration number or VAT number so the buyer can identify you."
+msgstr "Indiquez un identifiant de vendeur, un numéro d'enregistrement légal ou un numéro de TVA afin que l'acheteur puisse vous identifier."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:98
+msgid "A document-level discount amount can have at most 2 decimal places."
+msgstr "Un montant de remise au niveau du document peut comporter au maximum 2 décimales."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:99
+msgid "A document-level discount base amount can have at most 2 decimal places."
+msgstr "Un montant de base de remise au niveau du document peut comporter au maximum 2 décimales."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:100
+msgid "A document-level charge amount can have at most 2 decimal places."
+msgstr "Un montant de frais au niveau du document peut comporter au maximum 2 décimales."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:101
+msgid "The sum of line net amounts can have at most 2 decimal places."
+msgstr "La somme des montants nets des lignes peut comporter au maximum 2 décimales."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:102
+msgid "The invoice total without VAT can have at most 2 decimal places."
+msgstr "Le total de la facture hors TVA peut comporter au maximum 2 décimales."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:103
+msgid "The invoice total VAT amount can have at most 2 decimal places."
+msgstr "Le montant total de TVA de la facture peut comporter au maximum 2 décimales."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:104
+msgid "The invoice total with VAT can have at most 2 decimal places."
+msgstr "Le total de la facture TTC peut comporter au maximum 2 décimales."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:105
+msgid "The VAT total in accounting currency can have at most 2 decimal places."
+msgstr "Le total de TVA en devise comptable peut comporter au maximum 2 décimales."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:106
+msgid "The paid amount can have at most 2 decimal places."
+msgstr "Le montant payé peut comporter au maximum 2 décimales."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:107
+msgid "The rounding amount can have at most 2 decimal places."
+msgstr "Le montant d'arrondi peut comporter au maximum 2 décimales."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:108
+msgid "The amount due for payment can have at most 2 decimal places."
+msgstr "Le montant dû peut comporter au maximum 2 décimales."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:109
+msgid "A VAT category taxable amount can have at most 2 decimal places."
+msgstr "Un montant imposable de catégorie de TVA peut comporter au maximum 2 décimales."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:111
+msgid "Standard-rated lines require a matching 'Standard rated' VAT breakdown."
+msgstr "Les lignes au taux normal nécessitent une ventilation de TVA « Taux normal » correspondante."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:112
+msgid "Standard-rated lines require the seller's VAT or tax registration number."
+msgstr "Les lignes au taux normal nécessitent le numéro de TVA ou d'immatriculation fiscale du vendeur."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:113
+msgid "Standard-rated lines must have a VAT rate greater than zero."
+msgstr "Les lignes au taux normal doivent avoir un taux de TVA supérieur à zéro."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:114
+msgid "The standard-rated taxable amount does not match the sum of its lines, charges and discounts."
+msgstr "Le montant imposable au taux normal ne correspond pas à la somme de ses lignes, frais et remises."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:115
+msgid "The standard-rated VAT amount does not equal the taxable amount times the rate."
+msgstr "Le montant de TVA au taux normal n'est pas égal au montant imposable multiplié par le taux."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:116
+msgid "A standard-rated VAT breakdown must not carry a VAT exemption reason."
+msgstr "Une ventilation de TVA au taux normal ne doit pas comporter de motif d'exonération de TVA."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:118
+msgid "Exempt lines require exactly one 'Exempt from VAT' breakdown."
+msgstr "Les lignes exonérées nécessitent exactement une ventilation « Exonéré de TVA »."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:119
+msgid "Exempt lines require the seller's VAT or tax registration number."
+msgstr "Les lignes exonérées nécessitent le numéro de TVA ou d'immatriculation fiscale du vendeur."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:120
+msgid "Exempt lines must have a 0% VAT rate."
+msgstr "Les lignes exonérées doivent avoir un taux de TVA de 0 %."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:121
+msgid "The exempt taxable amount does not match the sum of its lines, charges and discounts."
+msgstr "Le montant imposable exonéré ne correspond pas à la somme de ses lignes, frais et remises."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:122
+msgid "The exempt VAT amount must be zero."
+msgstr "Le montant de TVA exonéré doit être nul."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:123
+msgid "An exempt VAT breakdown must state an exemption reason or reason code."
+msgstr "Une ventilation de TVA exonérée doit indiquer un motif d'exonération ou un code de motif."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:125
+msgid "Zero-rated lines require exactly one 'Zero rated' breakdown."
+msgstr "Les lignes au taux zéro nécessitent exactement une ventilation « Taux zéro »."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:126
+msgid "Zero-rated lines require the seller's VAT or tax registration number."
+msgstr "Les lignes au taux zéro nécessitent le numéro de TVA ou d'immatriculation fiscale du vendeur."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:127
+msgid "Zero-rated lines must have a 0% VAT rate."
+msgstr "Les lignes au taux zéro doivent avoir un taux de TVA de 0 %."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:128
+msgid "The zero-rated taxable amount does not match the sum of its lines, charges and discounts."
+msgstr "Le montant imposable au taux zéro ne correspond pas à la somme de ses lignes, frais et remises."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:129
+msgid "The zero-rated VAT amount must be zero."
+msgstr "Le montant de TVA au taux zéro doit être nul."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:130
+msgid "A zero-rated VAT breakdown must not carry a VAT exemption reason."
+msgstr "Une ventilation de TVA au taux zéro ne doit pas comporter de motif d'exonération de TVA."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:132
+msgid "Reverse-charge lines require exactly one 'VAT reverse charge' breakdown."
+msgstr "Les lignes en autoliquidation nécessitent exactement une ventilation « Autoliquidation de la TVA »."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:133
+msgid "Reverse charge requires both the seller's and the buyer's VAT (or registration) identifiers."
+msgstr "L'autoliquidation nécessite les identifiants de TVA (ou d'immatriculation) du vendeur et de l'acheteur."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:134
+msgid "Reverse-charge lines must have a 0% VAT rate."
+msgstr "Les lignes en autoliquidation doivent avoir un taux de TVA de 0 %."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:135
+msgid "The reverse-charge taxable amount does not match the sum of its lines, charges and discounts."
+msgstr "Le montant imposable en autoliquidation ne correspond pas à la somme de ses lignes, frais et remises."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:136
+msgid "The reverse-charge VAT amount must be zero."
+msgstr "Le montant de TVA en autoliquidation doit être nul."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:137
+msgid "A reverse-charge VAT breakdown must state a 'Reverse charge' exemption reason."
+msgstr "Une ventilation de TVA en autoliquidation doit indiquer un motif d'exonération « Autoliquidation »."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:139
+msgid "'Export outside the EU' lines require exactly one matching VAT breakdown."
+msgstr "Les lignes « Exportation hors UE » nécessitent exactement une ventilation de TVA correspondante."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:140
+msgid "Export lines require the seller's VAT or tax representative VAT number."
+msgstr "Les lignes d'exportation nécessitent le numéro de TVA du vendeur ou de son représentant fiscal."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:141
+msgid "Export lines must have a 0% VAT rate."
+msgstr "Les lignes d'exportation doivent avoir un taux de TVA de 0 %."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:142
+msgid "The export taxable amount does not match the sum of its lines, charges and discounts."
+msgstr "Le montant imposable à l'exportation ne correspond pas à la somme de ses lignes, frais et remises."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:143
+msgid "The export VAT amount must be zero."
+msgstr "Le montant de TVA à l'exportation doit être nul."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:144
+msgid "An export VAT breakdown must state an 'Export outside the EU' exemption reason."
+msgstr "Une ventilation de TVA à l'exportation doit indiquer un motif d'exonération « Exportation hors UE »."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:146
+msgid "Intra-community supply lines require exactly one matching VAT breakdown."
+msgstr "Les lignes de livraison intracommunautaire nécessitent exactement une ventilation de TVA correspondante."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:147
+msgid "Intra-community supply requires both the seller's VAT number and the buyer's VAT number."
+msgstr "La livraison intracommunautaire nécessite le numéro de TVA du vendeur et celui de l'acheteur."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:148
+msgid "Intra-community supply lines must have a 0% VAT rate."
+msgstr "Les lignes de livraison intracommunautaire doivent avoir un taux de TVA de 0 %."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:149
+msgid "The intra-community taxable amount does not match the sum of its lines, charges and discounts."
+msgstr "Le montant imposable intracommunautaire ne correspond pas à la somme de ses lignes, frais et remises."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:150
+msgid "The intra-community VAT amount must be zero."
+msgstr "Le montant de TVA intracommunautaire doit être nul."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:151
+msgid "An intra-community VAT breakdown must state an 'Intra-community supply' exemption reason."
+msgstr "Une ventilation de TVA intracommunautaire doit indiquer un motif d'exonération « Livraison intracommunautaire »."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:152
+msgid "Intra-community supply requires a delivery date or an invoicing period."
+msgstr "La livraison intracommunautaire nécessite une date de livraison ou une période de facturation."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:153
+msgid "Intra-community supply requires a 'deliver to' country code."
+msgstr "La livraison intracommunautaire nécessite un code pays de livraison."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:155
+msgid "'Not subject to VAT' lines require exactly one matching VAT breakdown."
+msgstr "Les lignes « Non soumis à la TVA » nécessitent exactement une ventilation de TVA correspondante."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:156
+msgid "A 'Not subject to VAT' invoice must not carry any VAT identifiers."
+msgstr "Une facture « Non soumis à la TVA » ne doit comporter aucun identifiant de TVA."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:157
+msgid "'Not subject to VAT' lines must not carry a VAT rate."
+msgstr "Les lignes « Non soumis à la TVA » ne doivent pas comporter de taux de TVA."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:158
+msgid "The 'not subject to VAT' taxable amount does not match the sum of its lines, charges and discounts."
+msgstr "Le montant imposable « non soumis à la TVA » ne correspond pas à la somme de ses lignes, frais et remises."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:159
+msgid "The 'not subject to VAT' VAT amount must be zero."
+msgstr "Le montant de TVA « non soumis à la TVA » doit être nul."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:160
+msgid "A 'not subject to VAT' breakdown must state a matching exemption reason."
+msgstr "Une ventilation « non soumis à la TVA » doit indiquer un motif d'exonération correspondant."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:161
+msgid "A 'not subject to VAT' invoice cannot mix in other VAT categories."
+msgstr "Une facture « non soumis à la TVA » ne peut pas mélanger d'autres catégories de TVA."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:162
+msgid "A 'not subject to VAT' invoice cannot have lines with other VAT categories."
+msgstr "Une facture « non soumis à la TVA » ne peut pas comporter de lignes avec d'autres catégories de TVA."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:163
+msgid "A 'not subject to VAT' invoice cannot have discounts with other VAT categories."
+msgstr "Une facture « non soumis à la TVA » ne peut pas comporter de remises avec d'autres catégories de TVA."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:164
+msgid "A 'not subject to VAT' invoice cannot have charges with other VAT categories."
+msgstr "Une facture « non soumis à la TVA » ne peut pas comporter de frais avec d'autres catégories de TVA."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:166
+msgid "A business process identifier is required."
+msgstr "Un identifiant de processus métier est requis."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:167
+msgid "Only one document-level note is allowed (unless both parties are German organizations)."
+msgstr "Une seule note au niveau du document est autorisée (sauf si les deux parties sont des organisations allemandes)."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:168
+msgid "A buyer reference or a purchase order number is required."
+msgstr "Une référence acheteur ou un numéro de bon de commande est requis."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:169
+msgid "The specification identifier must be the PEPPOL BIS Billing 3.0 value."
+msgstr "L'identifiant de spécification doit correspondre à la valeur PEPPOL BIS Billing 3.0."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:170
+msgid "The VAT accounting currency must differ from the invoice currency."
+msgstr "La devise comptable de TVA doit être différente de la devise de la facture."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:171
+msgid "The business process must follow the format 'urn:fdc:peppol.eu:2017:poacc:billing:NN:1.0'."
+msgstr "Le processus métier doit respecter le format « urn:fdc:peppol.eu:2017:poacc:billing:NN:1.0 »."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:172
+msgid "A buyer electronic address is required."
+msgstr "Une adresse électronique de l'acheteur est requise."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:173
+msgid "A seller electronic address is required."
+msgstr "Une adresse électronique du vendeur est requise."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:174
+msgid "An allowance/charge amount must equal base amount times percentage divided by 100."
+msgstr "Un montant de remise/frais doit être égal au montant de base multiplié par le pourcentage divisé par 100."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:175
+msgid "An allowance/charge base amount is required when a percentage is given."
+msgstr "Un montant de base de remise/frais est requis lorsqu'un pourcentage est indiqué."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:176
+msgid "An allowance/charge percentage is required when a base amount is given."
+msgstr "Un pourcentage de remise/frais est requis lorsqu'un montant de base est indiqué."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:177
+msgid "The charge indicator must be 'true' or 'false'."
+msgstr "L'indicateur de frais doit être « true » ou « false »."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:178
+msgid "Charges are not allowed at the price level."
+msgstr "Les frais ne sont pas autorisés au niveau du prix."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:179
+msgid "The item net price must equal the gross price minus the price discount."
+msgstr "Le prix net de l'article doit être égal au prix brut moins la remise sur le prix."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:180
+msgid "All amounts must use the invoice currency (except the VAT total in accounting currency)."
+msgstr "Tous les montants doivent utiliser la devise de la facture (sauf le total de TVA en devise comptable)."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:181
+msgid "Only one tax total with subtotals is allowed."
+msgstr "Un seul total de taxe avec sous-totaux est autorisé."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:182
+msgid "Only one tax total without subtotals is allowed when a tax currency is set."
+msgstr "Un seul total de taxe sans sous-totaux est autorisé lorsqu'une devise fiscale est définie."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:183
+msgid "The VAT total and the VAT total in accounting currency must have the same sign."
+msgstr "Le total de TVA et le total de TVA en devise comptable doivent avoir le même signe."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:184
+msgid "A mandate reference is required for direct debit payments."
+msgstr "Une référence de mandat est requise pour les paiements par prélèvement."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:185
+msgid "Only one project reference is allowed at document level."
+msgstr "Une seule référence de projet est autorisée au niveau du document."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:186
+msgid "A line period start date must fall within the invoicing period."
+msgstr "La date de début d'une période de ligne doit être comprise dans la période de facturation."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:187
+msgid "A line period end date must fall within the invoicing period."
+msgstr "La date de fin d'une période de ligne doit être comprise dans la période de facturation."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:188
+msgid "The GLN must be in a valid GS1 format."
+msgstr "Le GLN doit respecter un format GS1 valide."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:189
+msgid "The Swedish organization number format is invalid."
+msgstr "Le format du numéro d'organisation suédois est invalide."
+
+#: edocument/edocument/profiles/peppol/error_messages.py:190
+msgid "The Australian Business Number (ABN) format is invalid."
+msgstr "Le format de l'Australian Business Number (ABN) est invalide."
+
+#: edocument/edocument/profiles/peppol/error_messages.py
+msgid "Error"
+msgstr "Erreur"
+
+#: edocument/edocument/profiles/peppol/error_messages.py
+msgid "Warning"
+msgstr "Avertissement"
+
+#: edocument/edocument/profiles/peppol/error_messages.py
+msgid "Show technical details"
+msgstr "Afficher les détails techniques"
+
+#: edocument/edocument/profiles/peppol/error_messages.py
+msgid "{0} error(s), {1} warning(s)"
+msgstr "{0} erreur(s), {1} avertissement(s)"
+
+#: edocument/edocument/doctype/edocument/edocument.py
+msgid "Validation failed"
+msgstr "La validation a échoué"
+
+#. Label of the validation_report (HTML) field in DocType 'EDocument'
+msgid "Validation Report"
+msgstr "Rapport de validation"
+
+#. Label of the error (Long Text) field in DocType 'EDocument'
+msgid "Raw Error Output"
+msgstr "Sortie d'erreur brute"
+
+#. Label of the validation_details (JSON) field in DocType 'EDocument'
+msgid "Validation Details"
+msgstr "Détails de validation"
+
+#. Label of the error_section (Section Break) field in DocType 'EDocument'
+msgid "Validation"
+msgstr "Validation"
