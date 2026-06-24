@@ -106,8 +106,17 @@ def _get_peppol_xsl_paths() -> list[Path]:
 def validate_peppol_xml(xml_bytes, edocument_profile):
 	"""
 	Validate PEPPOL XML against XSD and Schematron.
+
+	The result carries three channels:
+		- "error" (str) and "warnings" (list[str]): flat text, kept for backward
+			compatibility and stored in the EDocument "error" field.
+		- "messages" (list[dict]): structured {severity, code, message} entries that
+			drive the user-friendly validation report.
 	"""
-	result = {"is_valid": True, "error": None, "warnings": []}
+	result = {"is_valid": True, "error": None, "warnings": [], "messages": []}
+
+	def _record(severity, message, code=None):
+		result["messages"].append({"severity": severity, "code": code, "message": message})
 
 	# Validate XML structure
 	try:
@@ -115,6 +124,7 @@ def validate_peppol_xml(xml_bytes, edocument_profile):
 	except ValueError as e:
 		result["is_valid"] = False
 		result["error"] = str(e)
+		_record("error", str(e))
 		return result
 
 	# Validate against XSD schema
@@ -123,19 +133,28 @@ def validate_peppol_xml(xml_bytes, edocument_profile):
 	try:
 		xml_bytes = validate_xml_against_xsd_file(xml_bytes, xsd_path)
 	except ValueError as e:
+		message = f"XSD validation failed: {e!s}"
 		result["is_valid"] = False
-		result["error"] = f"XSD validation failed: {e!s}"
+		result["error"] = message
+		_record("error", message)
 		return result
 	except FileNotFoundError as e:
-		result["warnings"].append(f"XSD schema file not found: {e!s}")
+		message = f"XSD schema file not found: {e!s}"
+		result["warnings"].append(message)
+		_record("warning", message)
 	except Exception as e:
-		result["warnings"].append(f"XSD validation skipped: {e!s}")
+		message = f"XSD validation skipped: {e!s}"
+		result["warnings"].append(message)
+		_record("warning", message)
 
 	# Validate against Schematron
 	# Get PEPPOL-specific XSL paths
 	xsl_paths = _get_peppol_xsl_paths()
 	try:
-		errors, warnings = validate_xml_against_schematron_files(xml_bytes, xsl_paths)
+		schematron_messages = validate_xml_against_schematron_files(xml_bytes, xsl_paths)
+		errors = [m["message"] for m in schematron_messages if m["severity"] != "warning"]
+		warnings = [m["message"] for m in schematron_messages if m["severity"] == "warning"]
+
 		# Debug: Log validation results
 		if errors:
 			frappe.log_error(
@@ -147,15 +166,25 @@ def validate_peppol_xml(xml_bytes, edocument_profile):
 				f"Schematron validation warnings for EDocument:\n{chr(10).join(warnings)}",
 				"Schematron Validation Debug",
 			)
+
+		for message in schematron_messages:
+			_record(message["severity"], message["message"], message.get("code"))
+
 		if errors:
 			result["is_valid"] = False
 			result["error"] = "\n".join(errors)
 		result["warnings"].extend(warnings)
 	except FileNotFoundError as e:
-		result["warnings"].append(f"XSL stylesheet file not found: {e!s}")
+		message = f"XSL stylesheet file not found: {e!s}"
+		result["warnings"].append(message)
+		_record("warning", message)
 	except ImportError as e:
-		result["warnings"].append(f"Schematron validation skipped: {e!s}")
+		message = f"Schematron validation skipped: {e!s}"
+		result["warnings"].append(message)
+		_record("warning", message)
 	except Exception as e:
-		result["warnings"].append(f"Schematron validation skipped: {e!s}")
+		message = f"Schematron validation skipped: {e!s}"
+		result["warnings"].append(message)
+		_record("warning", message)
 
 	return result
