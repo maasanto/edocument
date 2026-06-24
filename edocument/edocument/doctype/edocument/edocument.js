@@ -4,8 +4,34 @@
 frappe.ui.form.on("EDocument", {
 	refresh(frm) {
 		setup_action_buttons(frm);
+		show_validation_report(frm);
 	},
 });
+
+function show_validation_report(frm) {
+	const field = frm.get_field("validation_report");
+	if (!field) return;
+
+	const details = frm.doc.validation_details;
+	if (!details) {
+		field.set_value("");
+		frm._validation_report_key = null;
+		return;
+	}
+
+	// refresh() runs often; skip the roundtrip when the validation hasn't changed.
+	if (frm._validation_report_key === details) return;
+
+	// Render server-side so the friendly messages follow the user's language.
+	frm.call({
+		method: "get_validation_report",
+		doc: frm.doc,
+		callback: (r) => {
+			field.set_value(r.message || "");
+			frm._validation_report_key = details;
+		},
+	});
+}
 
 function setup_action_buttons(frm) {
 	const is_transmitted = frm.doc.status === "Transmission Successful";
