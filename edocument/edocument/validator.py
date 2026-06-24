@@ -9,11 +9,16 @@ This module also provides common validation functions for XSD and Schematron
 that can be used by all profiles.
 """
 
+import re
 from pathlib import Path
 from typing import Optional
 
 import frappe
 from frappe import _
+
+# EN16931 (CEN) Schematron messages embed the canonical rule code as a "[CODE]-"
+# prefix, while PEPPOL and country rules carry it only in the failed-assert @id.
+_CODE_PREFIX = re.compile(r"^\[([A-Za-z0-9.\-]+)\]\s*-?\s*")
 
 
 def get_xml_validator(xml_bytes, edocument_profile):
@@ -132,15 +137,61 @@ def validate_xml_against_xsd_file(xml_bytes: bytes, xsd_file_path: Path | str) -
 		raise ValueError(error_msg)
 
 
-def validate_xml_against_schematron_file(
-	xml_bytes: bytes, xsl_file_path: Path | str
-) -> tuple[list[str], list[str]]:
+def parse_svrl_report(report: str) -> list[dict]:
 	"""
-	Validate XML against a single Schematron XSL stylesheet.
+	Parse an SVRL (Schematron Validation Report Language) document into structured
+	validation messages.
 
+	Each returned dict carries:
+		- "severity": "error" or "warning"
+		- "code": the canonical rule code (e.g. "BR-CO-15", "PEPPOL-EN16931-R010")
+			or None when no code can be determined
+		- "message": the human-readable rule text, with any redundant "[CODE]-"
+			prefix removed
+
+	failed-assert elements are errors unless flagged as warnings; successful-report
+	elements are surfaced as warnings (matching the previous behaviour).
 	"""
 	from lxml import objectify
 
+	root = objectify.fromstring(report.encode("utf-8"))
+	svrl_ns = {"svrl": "http://purl.oclc.org/dsdl/svrl"}
+
+	messages = []
+
+	def _add(node, severity):
+		texts = node.xpath("svrl:text", namespaces=svrl_ns)
+		raw = texts[0].text.strip() if texts and texts[0].text else ""
+		if not raw:
+			return
+
+		# Prefer the canonical code embedded in the text ("[BR-52]-..."), since
+		# some CEN rules expose only an auto-generated @id; fall back to @id.
+		code = node.get("id")
+		message = raw
+		prefix_match = _CODE_PREFIX.match(raw)
+		if prefix_match:
+			code = prefix_match.group(1)
+			message = raw[prefix_match.end() :].strip()
+
+		messages.append({"severity": severity, "code": code, "message": message})
+
+	for node in root.xpath("//svrl:failed-assert", namespaces=svrl_ns):
+		severity = "warning" if node.get("flag") == "warning" else "error"
+		_add(node, severity)
+
+	for node in root.xpath("//svrl:successful-report", namespaces=svrl_ns):
+		_add(node, "warning")
+
+	return messages
+
+
+def validate_xml_against_schematron_file(xml_bytes: bytes, xsl_file_path: Path | str) -> list[dict]:
+	"""
+	Validate XML against a single Schematron XSL stylesheet.
+
+	Returns a list of structured validation messages (see parse_svrl_report).
+	"""
 	xsl_path = Path(xsl_file_path) if isinstance(xsl_file_path, str) else xsl_file_path
 
 	if not xsl_path.exists():
@@ -160,46 +211,18 @@ def validate_xml_against_schematron_file(
 		executable = xslt30_processor.compile_stylesheet(stylesheet_file=str(xsl_path))
 		report = executable.transform_to_string(xdm_node=input_node)
 
-	# Parse SVRL report
-	root = objectify.fromstring(report.encode("utf-8"))
-	svrl_ns = {"svrl": "http://purl.oclc.org/dsdl/svrl"}
-
-	# Errors: failed-assert WITHOUT flag="warning" (fatal or no flag)
-	error_asserts = root.xpath(
-		"//svrl:failed-assert[not(@flag='warning')]/svrl:text",
-		namespaces=svrl_ns,
-	)
-
-	# Warnings: failed-assert WITH flag="warning" + all successful-report
-	warning_asserts = root.xpath(
-		"//svrl:failed-assert[@flag='warning']/svrl:text",
-		namespaces=svrl_ns,
-	)
-	successful_reports = root.xpath(
-		"//svrl:successful-report/svrl:text",
-		namespaces=svrl_ns,
-	)
-
-	errors = [assertion.text.strip() for assertion in error_asserts if assertion.text]
-	warnings = [w.text.strip() for w in warning_asserts if w.text]
-	warnings.extend([r.text.strip() for r in successful_reports if r.text])
-
-	return errors, warnings
+	return parse_svrl_report(report)
 
 
-def validate_xml_against_schematron_files(
-	xml_bytes: bytes, xsl_file_paths: list[Path | str]
-) -> tuple[list[str], list[str]]:
+def validate_xml_against_schematron_files(xml_bytes: bytes, xsl_file_paths: list[Path | str]) -> list[dict]:
 	"""
 	Validate XML against multiple Schematron XSL stylesheets and combine results.
 
+	Returns a flat list of structured validation messages (see parse_svrl_report).
 	"""
-	all_errors = []
-	all_warnings = []
+	all_messages = []
 
 	for xsl_file_path in xsl_file_paths:
-		errors, warnings = validate_xml_against_schematron_file(xml_bytes, xsl_file_path)
-		all_errors.extend(errors)
-		all_warnings.extend(warnings)
+		all_messages.extend(validate_xml_against_schematron_file(xml_bytes, xsl_file_path))
 
-	return all_errors, all_warnings
+	return all_messages
